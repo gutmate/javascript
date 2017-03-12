@@ -1,5 +1,27 @@
 @charset "UTF-8";
+/*csslint
+empty-rules: false,
+important: false,
+adjoining-classes: false,
+import: false,
+ids: false,
+box-model: false,
+box-sizing: false,
+qualified-headings: false,
+unique-headings: false,
+floats: false,
+font-sizes: false,
+duplicate-background-images: false,
+order-alphabetical: false,
+fallback-colors: false,
+compatible-vendor-prefixes: false
+*/
+#aa {
+  color: red !important;
+}
+a {
 
+}
 .wrap {
   width: 100%;
   padding: 15px;
