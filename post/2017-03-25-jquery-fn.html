@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>template</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <script src="../js/jquery-1.11.3.js"></script>
+    <style>
+        h1 {
+            margin-bottom: 10px;
+        }
+        .test {
+
+        }
+        .btn-test {
+            padding: 5px 10px;
+            background-color: #999;
+            color: #fff;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $('.btn-test01').on('click', function() {
+                $('.btn-test01').testPlugin();
+            });
+            $('.btn-test02').on('click', function() {
+                $('.btn-test02').testPlugin();
+            });
+            $('.btn-test03').on('click', function() {
+                $('.btn-test03').testPlugin();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="container">
+        <h1>template</h1>
+        <div class="test">
+            <button class="btn-test btn-test01">
+                btn-test01
+            </button>
+            <button class="btn-test btn-test02">
+                btn-test02
+            </button>
+            <button class="btn-test btn-test03">
+                btn-test03
+            </button>
+        </div>
+    </div>
+    <script>
+        (function(global, $){
+            'use strict';
+
+            var plugin_name = 'testPlugin';
+
+            var ConstructorFn = function(el, options) {
+                this.init(el, options);
+                console.log(el)
+            };
+
+            ConstructorFn.fn = ConstructorFn.prototype = {
+                init: function(el, options) {
+                    // 사용자 정의 옵션 >> 기본 옵션 = 병합
+                    options = $.extend({}, $.fn[plugin_name].defaults, options);
+
+                    // 이벤트 메소드 실행
+                    this.events();
+                },
+                events: function() {
+
+                }
+            };
+
+
+            if ( !$.fn[plugin_name] ) {
+                // options - 사용자 정의 옵션 설정
+                $.fn[plugin_name] = function(options) {
+                    var $this = this;
+
+                    return $.each($this, function(index, el){
+                        var _$item = $this.eq(index);
+
+                        // 생성자 함수에 options 전달
+                        new ConstructorFn(el, options);
+                    });
+                };
+
+                // 플러그인 초기 옵션 설정
+                $.fn[plugin_name].defaults = {
+
+                };
+            }
+
+        })(window, window.jQuery);
+    </script>
+</div>
+</body>
+</html>
