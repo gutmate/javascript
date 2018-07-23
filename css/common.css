@@ -16,25 +16,24 @@ order-alphabetical: false,
 fallback-colors: false,
 compatible-vendor-prefixes: false
 */
-#aa {
-  color: red !important;
-}
-a {
 
+#aa {
+	color: red !important;
 }
+
 .wrap {
-  width: 100%;
-  padding: 15px;
-  background-color: #efefef;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+	width: 100%;
+	padding: 15px;
+	background-color: #efefef;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
+
 .container {
-  min-height: 600px;
-  padding: 20px;
-  background-color: #fff;
-  -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
-  box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+	min-height: 600px;
+	padding: 20px;
+	background-color: #fff;
+	-webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+	box-sizing: border-box;
 }

@@ -1,100 +1,124 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>prototype</title>
-  <link rel="stylesheet" href="../css/reset.css">
-  <link rel="stylesheet" href="../css/common.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>prototype</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="container">
-      <div class="prototype">
-        <h1>prototype</h1>
-      </div>
+    <div class="wrap">
+        <div class="container">
+            <div class="prototype">
+                <h1>prototype</h1>
+            </div>
+        </div>
     </div>
-  </div>
-  <script>
-    //기본 prototype 객체 이용
-    function Person(arg) {
-      this.name = arg;
-    }
+    <script>
+        //기본 prototype 객체 이용
+        function Person(arg) {
+            this.name = arg;
+        }
 
-    Person.prototype.getName = function() {
-      return this.name;
-    };
+        Person.prototype.getName = function () {
+            return this.name;
+        };
 
-    Person.prototype.setName = function(value) {
-      this.name = value;
-    };
+        Person.prototype.setName = function (value) {
+            this.name = value;
+        };
 
-    var me = new Person('me');
-    var you = new Person('you');
+        var me = new Person('me');
+        var you = new Person('you');
 
-    console.log(me.getName());
-    console.log(you.getName());
+        console.log(me.getName());
+        console.log(you.getName());
 
-    me.setName('jinhyung');
-    you.setName('seulgi');
+        me.setName('jinhyung');
+        you.setName('seulgi');
 
-    console.log(me.getName());
-    console.log(you.getName());
+        console.log(me.getName());
+        console.log(you.getName());
 
-    /**
-     * 이와 같이 자바스크립트에서 클래스 안의 메서드를 정의할 때는 프로토타입 객체에 정의 한 후, new로 생성산 객체에서
-     * 접근할 수 있게 하는 것이 좋다. 더글라스 크락포드는 다음과 같은 함수를 제시하면서 메서드를 정의하는 방법을 소개한다.
-     */
+        /**
+         * 이와 같이 자바스크립트에서 클래스 안의 메서드를 정의할 때는 프로토타입 객체에 정의 한 후, new로 생성한 객체에서
+         * 접근할 수 있게 하는 것이 좋다. 더글라스 크락포드는 다음과 같은 함수를 제시하면서 메서드를 정의하는 방법을 소개한다.
+         */
 
-    // javascript에 기본으로 선언 되어 있는 Function 객체에 prototype 객체를 이용해서 method라는 이름의 메서드를 추가한다.
-    Function.prototype.method = function(name, func) {
-      if (!this.prototype[name]) {
-        this.prototype[name] = func;
-      }
-    };
+        // javascript에 기본으로 선언 되어 있는 Function 객체에 prototype 객체를 이용해서 method라는 이름의 메서드를 추가한다.
+        Function.prototype.method = function (name, func) {
+            if (!this.prototype[name]) {
+                this.prototype[name] = func;
+            }
+        };
 
-    function House(arg) {
-      this.type = arg;
-    }
+        console.dir(Function.method);
 
-    House.method('getType', function() {
-      return this.type;
-    });
+        function House(arg) {
+            this.type = arg;
+        }
 
-    House.method('setType', function(value) {
-      this.type = value;
-    });
+        House.method('getType', function () {
+            return this.type;
+        });
 
-    /*
+        House.method('setType', function (value) {
+            this.type = value;
+        });
 
-    this.prototype[name] = func; //해당 구문은 현 상황에서 아래처럼 해석 된다.
+        /*
 
-    House.method('setType', function(value) {
-      this.type = value;
-    });
+        this.prototype[name] = func; //해당 구문은 현 상황에서 아래처럼 해석 된다.
 
-    ===
+        House.method('setType', function(value) {
+          this.type = value;
+        });
 
-    House.prototype.setType = function(value) {
-      this.type = value;
-    };
+        ===
 
-    */
+        House.prototype.setType = function(value) {
+          this.type = value;
+        };
 
-    var a = new House('apart');
-    var b = new House('villa');
+        */
 
-    console.log(a.getType());
-    console.log(b.getType());
+        var a = new House('apart');
+        var b = new House('villa');
 
-    a.setType('residence');
-    b.setType('mantion');
+        console.log(a.getType());
+        console.log(b.getType());
 
-    console.log(a.getType());
-    console.log(b.getType());
+        a.setType('residence');
+        b.setType('mantion');
+
+        console.log(a.getType());
+        console.log(b.getType());
 
 
-  </script>
+        function getToday() {
+            var d = new Date();
+            var y = d.getFullYear();
+            var m = d.getMonth() + 1;
+            var d = d.getDate();
+            return y + '.' + m + '.' + d;
+        }
+
+        var _el = document.querySelector('.prototype');
+        var _day = getToday();
+        var node = document.createTextNode(_day);
+
+        console.dir(_day);
+        console.dir(node);
+
+        console.dir(_el);
+        _el.appendChild(node);
+
+
+    </script>
 </body>
+
 </html>
